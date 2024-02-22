@@ -1,0 +1,28 @@
+
+div.modal-bg{
+    
+    backdrop-filter: blur(4px);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    background-color: #fff;
+    color: #252525;
+    /* padding: 4rem; */
+    position: absolute;
+    border-radius: 1em;
+}
+.modal-message{
+    padding: 0 4rem 4rem; 
+}
+.close-btn{
+    display: flex;
+    justify-content: end;
+}
