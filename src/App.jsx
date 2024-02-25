@@ -6,48 +6,50 @@ import  Modal2 from './Modals/modal2'
 import  Modal3 from './Modals/modal3'
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
+  const [activeModal, setActiveModal] = useState(null);
+
+  const openModal = (modalNumber) => {
+    setActiveModal(modalNumber);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setActiveModal(null);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent form submission from refreshing the page
-    // Handle form submission logic here
+
+  const handleSubmit = (modalNumber) => (e) => {
+    e.preventDefault();
+    openModal(modalNumber);
   };
   return (
     <>
       <h1>Passing Props</h1>
-      <Modal1 isOpen={isModalOpen} onClose={closeModal}/>
-      <Modal2  isOpen={isModalOpen} onClose={closeModal}/>
-      <Modal3 isOpen={isModalOpen} onClose={closeModal}/>
-      <form action="" onSubmit={handleSubmit}>
+      <Modal1 isOpen={activeModal === 1} onClose={closeModal} />
+      <Modal2 isOpen={activeModal === 2} onClose={closeModal} />
+      <Modal3 isOpen={activeModal === 3} onClose={closeModal} />
+      <form action="">
         <div>
           <div>
             <label htmlFor="">Question 1</label>
           </div>
           <input type="text" />
-          <button onClick={openModal}><Icon icon="ic:outline-question-mark" width="1.2em" height="1.2em" /></button>
-          <div><button className="submit">Submit</button></div>
+          <button><Icon icon="ic:outline-question-mark" width="1.2em" height="1.2em" /></button>
+          <div><button className="submit"onClick={handleSubmit(1)}>Submit</button></div>
         </div>
         <div>
           <div>
             <label htmlFor="">Question 2</label>
           </div>
           <input type="text" />
-          <button onClick={openModal}><Icon icon="ic:outline-question-mark" width="1.2em" height="1.2em" /></button>
-          <div><button className="submit">Submit</button></div>
+          <button><Icon icon="ic:outline-question-mark" width="1.2em" height="1.2em" /></button>
+          <div><button className="submit"  onClick={handleSubmit(2)}>Submit</button></div>
         </div>
         <div>
           <div>
             <label htmlFor="">Question 3</label>
           </div>
           <input type="text" />
-          <button onClick={openModal}><Icon icon="ic:outline-question-mark" width="1.2em" height="1.2em" /></button>
-          <div><button className="submit">Submit</button></div>
+          <button><Icon icon="ic:outline-question-mark" width="1.2em" height="1.2em" /></button>
+          <div><button className="submit" onClick={handleSubmit(3)}>Submit</button></div>
         </div>
       </form>
     </>
